@@ -7,6 +7,10 @@ import {SettingsPage} from "../settings/settings";
 import {TripsPage} from "../trips/trips";
 import {SearchLocationPage} from "../search-location/search-location";
 
+import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+
+declare var google;
+
 
 @Component({
   selector: 'page-home',
@@ -14,14 +18,51 @@ import {SearchLocationPage} from "../search-location/search-location";
 })
 
 export class HomePage {
+  map: any;
   // search condition
   public search = {
     name: "Rio de Janeiro, Brazil",
     date: new Date().toISOString()
   }
 
-  constructor(private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController) {
+  constructor(private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController,
+    private geolocation: Geolocation) {
   }
+
+  getPosition():any{
+  this.geolocation.getCurrentPosition().then(response => {
+    this.loadMap(response);
+  })
+  .catch(error =>{
+    console.log(error);
+  })
+}
+loadMap(position: Geoposition){
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  console.log(latitude, longitude);
+
+  // create a new map by passing HTMLElement
+  let mapEle: HTMLElement = document.getElementById('map');
+
+  // create LatLng object
+  let myLatLng = {lat: latitude, lng: longitude};
+
+  // create map
+  this.map = new google.maps.Map(mapEle, {
+    center: myLatLng,
+    zoom: 12
+  });
+
+  google.maps.event.addListenerOnce(this.map, 'idle', () => {
+    let marker = new google.maps.Marker({
+      position: myLatLng,
+      map: this.map,
+      title: 'Hello World!'
+    });
+    mapEle.classList.add('show-map');
+  });
+}
 
   ionViewWillEnter() {
     // this.search.pickup = "Rio de Janeiro, Brazil";
