@@ -47,6 +47,7 @@ export class HomePage {
   })
 }
 
+
 loadMap(position: Geoposition){
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
