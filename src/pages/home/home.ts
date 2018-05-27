@@ -65,6 +65,20 @@ loadMap(position: Geoposition){
     zoom: 12
   });
 
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">Comedor Central</h1>'+
+      '<div id="bodyContent">'+
+      '<img src="../../assets/img/comcent.jpg" alt="comedor central" height="170" width="144">'+
+      '<p>comedor info</p>'+
+      '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
   google.maps.event.addListenerOnce(this.map, 'idle', () => {
     console.log(myLatLng);
     let marker = new google.maps.Marker({
@@ -73,11 +87,15 @@ loadMap(position: Geoposition){
       title: 'Yo',
       icon: '../../assets/img/persona.png'
     });
+
     let markerCentral = new google.maps.Marker({
       position: {lat: 4.634603, lng:-74.082858},
       map: this.map,
       title: 'Comedor Central',
       icon: '../../assets/img/restaurante.png'
+    });
+    markerCentral.addListener('click', function() {
+      infowindow.open(this.map, markerCentral);
     });
 
     let markerFEM = new google.maps.Marker({
