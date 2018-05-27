@@ -109,7 +109,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="../../assets/img/Fem.jpg" alt="comedor central" height="170" width="144">'+
         '<p>comedor info</p>'+
-        '<p> '+ dist.FEM +' </p>'+
+        '<p> '+ dist.FEM +' metros </p>'+
         '</div>'+
         '</div>';
 
@@ -124,7 +124,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="../../assets/img/Economia.jpg" alt="comedor central" height="170" width="144">'+
         '<p>comedor info</p>'+
-        '<p> '+ dist.Economia +' </p>'+
+        '<p> '+ dist.Economia +'metros </p>'+
         '</div>'+
         '</div>';
 
@@ -139,7 +139,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="../../assets/img/Flecha.jpg" alt="comedor central" height="170" width="144">'+
         '<p>comedor info</p>'+
-        '<p> '+ dist.LaFlecha +' </p>'+
+        '<p> '+ dist.LaFlecha +'metros </p>'+
         '</div>'+
         '</div>';
 
@@ -154,7 +154,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="../../assets/img/Agronomia.jpg" alt="comedor central" height="170" width="144">'+
         '<p>comedor info</p>'+
-        '<p> '+ dist.Agronomia +' </p>'+
+        '<p> '+ dist.Agronomia +'metros </p>'+
         '</div>'+
         '</div>';
 
