@@ -62,7 +62,7 @@ loadMap(position: Geoposition){
   // create map
   this.map = new google.maps.Map(mapEle, {
     center: myLatLng,
-    zoom: 12
+    zoom: 16
   });
 
   var contentString = '<div id="content">'+
@@ -135,7 +135,8 @@ loadMap(position: Geoposition){
 
   this.rest.GetDistances(latitude,longitude)
     .subscribe(
-      res => console.log(res),
+      res => {let distances = res;
+              console.log(distances)},
       error => console.log("error prro")
     )
   }

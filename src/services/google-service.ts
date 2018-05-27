@@ -22,7 +22,7 @@ export class GoogleService{
         let options = new RequestOptions({ headers: headers });
         let destination = "4.634603,-74.082858|4.637810,-74.082686|4.636989,-74.080826|4.633774,-74.084300|4.635813,-74.087402|4.636721,-74.091003";
         let Url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&mode=walking&origins=" + latitude+"," +longitude+ "&destinations="+destination+"&key=AIzaSyCn7UxDVsdSkYucnQhKJULWInNVJv2qEGM"
-        console.log(Url)
+        //console.log(Url)
         return this.http.get(Url, options)
                     .map(this.extractData)
                     .catch(this.handleError);
@@ -31,8 +31,19 @@ export class GoogleService{
 
 private extractData(res: Response) {
   let body = res.json();
-  //console.log(body);
-  return body || { };
+  let distances = body["rows"]["0"]["elements"];
+  //console.log(distances);
+  let distance = JSON.stringify(
+    {
+      central: distances["0"]["distance"]["value"],
+      FEM: distances["1"]["distance"]["value"],
+      Economia: distances["2"]["distance"]["value"],
+      LaFlecha: distances["3"]["distance"]["value"],
+      Agronomia: distances["4"]["distance"]["value"],
+      Hemeroteca: distances["5"]["distance"]["value"],
+    });
+    //console.log(distance);
+  return distance || { };
 }
   private handleError (error: Response | any) {
     let errMsg: string;
