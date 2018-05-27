@@ -1,106 +1,68 @@
-import {Component} from "@angular/core";
-import {NavController, PopoverController} from "ionic-angular";
-import {Storage} from '@ionic/storage';
-
-import {NotificationsPage} from "../notifications/notifications";
-import {SettingsPage} from "../settings/settings";
-import {TripsPage} from "../trips/trips";
-import {SearchLocationPage} from "../search-location/search-location";
-
-import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 declare var google;
 
-
 @Component({
-  selector: 'page-home',
+  selector: 'home-page',
   templateUrl: 'home.html'
 })
-
 export class HomePage {
+
+  @ViewChild('map') mapElement: ElementRef;
   map: any;
-  // search condition
-  public search = {
-    name: "Rio de Janeiro, Brazil",
-    date: new Date().toISOString()
+
+  constructor(public navCtrl: NavController, public geolocation: Geolocation) {
+
   }
 
-  constructor(private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController,
-    private geolocation: Geolocation) {
+  ionViewDidLoad(){
+    this.loadMap();
   }
 
-  getPosition():any{
-  this.geolocation.getCurrentPosition().then(response => {
-    this.loadMap(response);
-  })
-  .catch(error =>{
-    console.log(error);
-  })
-}
-loadMap(position: Geoposition){
-  let latitude = position.coords.latitude;
-  let longitude = position.coords.longitude;
-  console.log(latitude, longitude);
+  loadMap(){
 
-  // create a new map by passing HTMLElement
-  let mapEle: HTMLElement = document.getElementById('map');
+    this.geolocation.getCurrentPosition().then((position) => {
 
-  // create LatLng object
-  let myLatLng = {lat: latitude, lng: longitude};
-
-  // create map
-  this.map = new google.maps.Map(mapEle, {
-    center: myLatLng,
-    zoom: 12
-  });
-
-  google.maps.event.addListenerOnce(this.map, 'idle', () => {
-    let marker = new google.maps.Marker({
-      position: myLatLng,
-      map: this.map,
-      title: 'Hello World!'
-    });
-    mapEle.classList.add('show-map');
-  });
-}
-
-  ionViewWillEnter() {
-    // this.search.pickup = "Rio de Janeiro, Brazil";
-    // this.search.dropOff = "Same as pickup";
-    this.storage.get('pickup').then((val) => {
-      if (val === null) {
-        this.search.name = "Rio de Janeiro, Brazil"
-      } else {
-        this.search.name = val;
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      console.log(latLng)
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
       }
-    }).catch((err) => {
-      console.log(err)
+
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+    }, (err) => {
+      console.log(err);
     });
-  }
 
-  // go to result page
-  doSearch() {
-    this.nav.push(TripsPage);
   }
+  addMarker(){
 
-  // choose place
-  choosePlace(from) {
-    this.nav.push(SearchLocationPage, from);
-  }
-
-  // to go account page
-  goToAccount() {
-    this.nav.push(SettingsPage);
-  }
-
-  presentNotifications(myEvent) {
-    console.log(myEvent);
-    let popover = this.popoverCtrl.create(NotificationsPage);
-    popover.present({
-      ev: myEvent
+    let marker = new google.maps.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      position: this.map.getCenter()
     });
+
+    let content = "<h4>Information!</h4>";
+
+    this.addInfoWindow(marker, content);
+
   }
+
+  addInfoWindow(marker, content){
+
+  let infoWindow = new google.maps.InfoWindow({
+    content: content
+  });
+
+  google.maps.event.addListener(marker, 'click', () => {
+    infoWindow.open(this.map, marker);
+  });
 
 }
-
-//
+}
