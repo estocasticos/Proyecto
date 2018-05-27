@@ -24,8 +24,10 @@ import {SearchLocationPage} from "../pages/search-location/search-location";
 import {TripDetailPage} from "../pages/trip-detail/trip-detail";
 import {TripsPage} from "../pages/trips/trips";
 import {LocalWeatherPage} from "../pages/local-weather/local-weather";
-import { Geolocation } from '@ionic-native/geolocation';
 
+import { GoogleService } from '../services/google-service'
+import { Geolocation } from '@ionic-native/geolocation';
+import { HttpModule } from '@angular/http';
 // import services
 // end import services
 // end import services
@@ -49,6 +51,7 @@ import { Geolocation } from '@ionic-native/geolocation';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
       scrollPadding: false,
@@ -81,7 +84,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     ActivityService,
     TripService,
     Geolocation,
-    WeatherProvider
+    WeatherProvider,
+    GoogleService
   ]
 })
 
