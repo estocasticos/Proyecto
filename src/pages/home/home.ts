@@ -84,14 +84,16 @@ loadMap(position: Geoposition){
   }
 
   markers(distances: any, mapEle: any, myLatLng: any){
-      console.log(distances);
-      var contentStringCentral = '<div id="content">'+
+      let dist=JSON.parse(distances)
+    console.log(dist)
+      var contentStringCentral = '<div id="content" style="align-content: center">'+
           '<div id="siteNotice">'+
           '</div>'+
           '<h1 id="firstHeading" class="firstHeading">Comedor Central</h1>'+
-          '<div id="bodyContent">'+
+          '<div id="bodyContent"  style="align-content: center">'+
           '<img src="../../assets/img/comcent.jpg" alt="comedor central" height="170" width="144">'+
           '<p>comedor info</p>'+
+          '<p> '+ dist.central +' metros </p>'+
           '</div>'+
           '</div>';
 
@@ -107,6 +109,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="../../assets/img/Fem.jpg" alt="comedor central" height="170" width="144">'+
         '<p>comedor info</p>'+
+        '<p> '+ dist.FEM +' </p>'+
         '</div>'+
         '</div>';
 
@@ -121,6 +124,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="../../assets/img/Economia.jpg" alt="comedor central" height="170" width="144">'+
         '<p>comedor info</p>'+
+        '<p> '+ dist.Economia +' </p>'+
         '</div>'+
         '</div>';
 
@@ -135,6 +139,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="../../assets/img/Flecha.jpg" alt="comedor central" height="170" width="144">'+
         '<p>comedor info</p>'+
+        '<p> '+ dist.LaFlecha +' </p>'+
         '</div>'+
         '</div>';
 
@@ -149,6 +154,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="../../assets/img/Agronomia.jpg" alt="comedor central" height="170" width="144">'+
         '<p>comedor info</p>'+
+        '<p> '+ dist.Agronomia +' </p>'+
         '</div>'+
         '</div>';
 
@@ -163,6 +169,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="../../assets/img/Hemeroteca.jpg" alt="comedor central" height="170" width="144">'+
         '<p>comedor info</p>'+
+        '<p> '+ dist.Hemeroteca +' </p>'+
         '</div>'+
         '</div>';
 
