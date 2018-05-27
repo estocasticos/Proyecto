@@ -63,11 +63,52 @@ loadMap(position: Geoposition){
   });
 
   google.maps.event.addListenerOnce(this.map, 'idle', () => {
+    console.log(myLatLng);
     let marker = new google.maps.Marker({
       position: myLatLng,
       map: this.map,
-      title: 'Hello World!'
+      title: 'Yo',
+      icon: '../../assets/img/persona.png'
     });
+    let markerCentral = new google.maps.Marker({
+      position: {lat: 4.634603, lng:-74.082858},
+      map: this.map,
+      title: 'Comedor Central',
+      icon: '../../assets/img/restaurante.png'
+    });
+
+    let markerFEM = new google.maps.Marker({
+      position: {lat: 4.637810, lng:-74.082686},
+      map: this.map,
+      title: 'Cafeteria del FEM',
+      icon: '../../assets/img/restaurante.png'
+    });
+    let markerEconomia = new google.maps.Marker({
+      position: {lat: 4.636989, lng:-74.080826},
+      map: this.map,
+      title: 'Cafeteria C. Economicas',
+      icon: '../../assets/img/restaurante.png'
+    });
+    let markerLaFlecha = new google.maps.Marker({
+      position: {lat: 4.633774, lng:-74.084300},
+      map: this.map,
+      title: 'Cafeteria La Flecha',
+      icon: '../../assets/img/restaurante.png'
+    });
+    let markerAgronomia = new google.maps.Marker({
+      position: {lat: 4.635813, lng:-74.087402},
+      map: this.map,
+      title: 'Cafeteria de Agronomia',
+      icon: '../../assets/img/restaurante.png'
+    });
+    let markerHemeroteca = new google.maps.Marker({
+      position: {lat: 4.636721, lng:-74.091003},
+      map: this.map,
+      title: 'Cafeteria de la Hemeroteca',
+      icon: '../../assets/img/restaurante.png'
+    });
+
+
     mapEle.classList.add('show-map');
   });
 }
