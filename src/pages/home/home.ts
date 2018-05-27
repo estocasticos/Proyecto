@@ -9,6 +9,8 @@ import {SearchLocationPage} from "../search-location/search-location";
 
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 
+import { GoogleService } from '../../services/google-service'
+
 declare var google;
 
 
@@ -28,7 +30,7 @@ export class HomePage {
   }
 
   constructor(private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController,
-    private geolocation: Geolocation) {
+    private geolocation: Geolocation, public rest: GoogleService) {
   }
 
 
@@ -70,7 +72,14 @@ loadMap(position: Geoposition){
     });
     mapEle.classList.add('show-map');
   });
-}
+
+  this.rest.GetDistances(latitude,longitude)
+    .subscribe(
+      res => console.log(res),
+      error => console.log("error prro")
+    )
+  }
+
 
   ionViewWillEnter() {
     // this.search.pickup = "Rio de Janeiro, Brazil";
