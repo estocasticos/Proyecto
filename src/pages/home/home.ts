@@ -51,7 +51,7 @@ export class HomePage {
 loadMap(position: Geoposition){
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
-  console.log(latitude, longitude);
+  //console.log(latitude, longitude);
 
   // create a new map by passing HTMLElement
   let mapEle: HTMLElement = document.getElementById('map');
@@ -65,169 +65,183 @@ loadMap(position: Geoposition){
     zoom: 16
   });
 
-  var contentStringCentral = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">Comedor Central</h1>'+
-      '<div id="bodyContent">'+
-      '<img src="../../assets/img/comcent.jpg" alt="comedor central" height="170" width="144">'+
-      '<p>comedor info</p>'+
-      '</div>'+
-      '</div>';
-
-  var infowindowCentral = new google.maps.InfoWindow({
-    content: contentStringCentral
-  });
-
-
-  var contentStringFEM = '<div id="content">'+
-    '<div id="siteNotice">'+
-    '</div>'+
-    '<h1 id="firstHeading" class="firstHeading">Comedor FEM</h1>'+
-    '<div id="bodyContent">'+
-    '<img src="../../assets/img/Fem.jpg" alt="comedor central" height="170" width="144">'+
-    '<p>comedor info</p>'+
-    '</div>'+
-    '</div>';
-
-  var infowindowFEM = new google.maps.InfoWindow({
-    content: contentStringFEM
-  });
-
-  var contentStringEconomia = '<div id="content">'+
-    '<div id="siteNotice">'+
-    '</div>'+
-    '<h1 id="firstHeading" class="firstHeading">Comedor Economia</h1>'+
-    '<div id="bodyContent">'+
-    '<img src="../../assets/img/Economia.jpg" alt="comedor central" height="170" width="144">'+
-    '<p>comedor info</p>'+
-    '</div>'+
-    '</div>';
-
-  var infowindowEconomia = new google.maps.InfoWindow({
-    content: contentStringEconomia
-  });
-
-  var contentStringFlecha = '<div id="content">'+
-    '<div id="siteNotice">'+
-    '</div>'+
-    '<h1 id="firstHeading" class="firstHeading">Comedor Flecha</h1>'+
-    '<div id="bodyContent">'+
-    '<img src="../../assets/img/Flecha.jpg" alt="comedor central" height="170" width="144">'+
-    '<p>comedor info</p>'+
-    '</div>'+
-    '</div>';
-
-  var infowindowFlecha = new google.maps.InfoWindow({
-    content: contentStringFlecha
-  });
-
-  var contentStringAgronomia = '<div id="content">'+
-    '<div id="siteNotice">'+
-    '</div>'+
-    '<h1 id="firstHeading" class="firstHeading">Comedor Agronomia</h1>'+
-    '<div id="bodyContent">'+
-    '<img src="../../assets/img/Agronomia.jpg" alt="comedor central" height="170" width="144">'+
-    '<p>comedor info</p>'+
-    '</div>'+
-    '</div>';
-
-  var infowindowAgronomia = new google.maps.InfoWindow({
-    content: contentStringAgronomia
-  });
-
-  var contentStringHemeroteca = '<div id="content">'+
-    '<div id="siteNotice">'+
-    '</div>'+
-    '<h1 id="firstHeading" class="firstHeading">Comedor Hemeroteca</h1>'+
-    '<div id="bodyContent">'+
-    '<img src="../../assets/img/Hemeroteca.jpg" alt="comedor central" height="170" width="144">'+
-    '<p>comedor info</p>'+
-    '</div>'+
-    '</div>';
-
-  var infowindowHemeroteca = new google.maps.InfoWindow({
-    content: contentStringHemeroteca
-  });
-
   google.maps.event.addListenerOnce(this.map, 'idle', () => {
-    console.log(myLatLng);
+    //console.log(myLatLng);
     let marker = new google.maps.Marker({
       position: myLatLng,
       map: this.map,
       title: 'Yo',
       icon: '../../assets/img/male.png'
     });
-
-    let markerCentral = new google.maps.Marker({
-      position: {lat: 4.634603, lng:-74.082858},
-      map: this.map,
-      title: 'Comedor Central',
-      icon: '../../assets/img/cafetaria.png'
-    });
-    markerCentral.addListener('click', function() {
-      infowindowCentral.open(this.map, markerCentral);
-    });
-
-    let markerFEM = new google.maps.Marker({
-      position: {lat: 4.637810, lng:-74.082686},
-      map: this.map,
-      title: 'Cafeteria del FEM',
-      icon: '../../assets/img/cafetaria.png'
-    });
-    markerFEM.addListener('click', function() {
-      infowindowFEM.open(this.map, markerFEM);
-    });
-
-    let markerEconomia = new google.maps.Marker({
-      position: {lat: 4.636989, lng:-74.080826},
-      map: this.map,
-      title: 'Cafeteria C. Economicas',
-      icon: '../../assets/img/cafetaria.png'
-    });
-    markerEconomia.addListener('click', function() {
-      infowindowEconomia.open(this.map, markerEconomia);
-    });
-
-    let markerLaFlecha = new google.maps.Marker({
-      position: {lat: 4.633774, lng:-74.084300},
-      map: this.map,
-      title: 'Cafeteria La Flecha',
-      icon: '../../assets/img/cafetaria.png'
-    });
-    markerLaFlecha.addListener('click', function() {
-      infowindowFlecha.open(this.map, markerLaFlecha);
-    });
-
-    let markerAgronomia = new google.maps.Marker({
-      position: {lat: 4.635813, lng:-74.087402},
-      map: this.map,
-      title: 'Cafeteria de Agronomia',
-      icon: '../../assets/img/cafetaria.png'
-    });
-    markerAgronomia.addListener('click', function() {
-      infowindowAgronomia.open(this.map, markerAgronomia);
-    });
-
-    let markerHemeroteca = new google.maps.Marker({
-      position: {lat: 4.636721, lng:-74.091003},
-      map: this.map,
-      title: 'Cafeteria de la Hemeroteca',
-      icon: '../../assets/img/cafetaria.png'
-    });
-    markerHemeroteca.addListener('click', function() {
-      infowindowHemeroteca.open(this.map, markerHemeroteca);
-    });
-
-    mapEle.classList.add('show-map');
   });
-
   this.rest.GetDistances(latitude,longitude)
     .subscribe(
-      res => {let distances = res;
-              console.log(distances)},
+      res => {this.markers(res,mapEle,myLatLng);
+              //console.log(distances)
+            },
       error => console.log("error prro")
     )
+  }
+
+  markers(distances: any, mapEle: any, myLatLng: any){
+      console.log(distances);
+      var contentStringCentral = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">Comedor Central</h1>'+
+          '<div id="bodyContent">'+
+          '<img src="../../assets/img/comcent.jpg" alt="comedor central" height="170" width="144">'+
+          '<p>comedor info</p>'+
+          '</div>'+
+          '</div>';
+
+      var infowindowCentral = new google.maps.InfoWindow({
+        content: contentStringCentral
+      });
+
+
+      var contentStringFEM = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">Comedor FEM</h1>'+
+        '<div id="bodyContent">'+
+        '<img src="../../assets/img/Fem.jpg" alt="comedor central" height="170" width="144">'+
+        '<p>comedor info</p>'+
+        '</div>'+
+        '</div>';
+
+      var infowindowFEM = new google.maps.InfoWindow({
+        content: contentStringFEM
+      });
+
+      var contentStringEconomia = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">Comedor Economia</h1>'+
+        '<div id="bodyContent">'+
+        '<img src="../../assets/img/Economia.jpg" alt="comedor central" height="170" width="144">'+
+        '<p>comedor info</p>'+
+        '</div>'+
+        '</div>';
+
+      var infowindowEconomia = new google.maps.InfoWindow({
+        content: contentStringEconomia
+      });
+
+      var contentStringFlecha = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">Comedor Flecha</h1>'+
+        '<div id="bodyContent">'+
+        '<img src="../../assets/img/Flecha.jpg" alt="comedor central" height="170" width="144">'+
+        '<p>comedor info</p>'+
+        '</div>'+
+        '</div>';
+
+      var infowindowFlecha = new google.maps.InfoWindow({
+        content: contentStringFlecha
+      });
+
+      var contentStringAgronomia = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">Comedor Agronomia</h1>'+
+        '<div id="bodyContent">'+
+        '<img src="../../assets/img/Agronomia.jpg" alt="comedor central" height="170" width="144">'+
+        '<p>comedor info</p>'+
+        '</div>'+
+        '</div>';
+
+      var infowindowAgronomia = new google.maps.InfoWindow({
+        content: contentStringAgronomia
+      });
+
+      var contentStringHemeroteca = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h1 id="firstHeading" class="firstHeading">Comedor Hemeroteca</h1>'+
+        '<div id="bodyContent">'+
+        '<img src="../../assets/img/Hemeroteca.jpg" alt="comedor central" height="170" width="144">'+
+        '<p>comedor info</p>'+
+        '</div>'+
+        '</div>';
+
+      var infowindowHemeroteca = new google.maps.InfoWindow({
+        content: contentStringHemeroteca
+      });
+
+
+        google.maps.event.addListenerOnce(this.map, 'idle', () => {
+          //console.log(myLatLng);
+          let marker = new google.maps.Marker({
+            position: myLatLng,
+            map: this.map,
+            title: 'Yo',
+            icon: '../../assets/img/male.png'
+          });
+
+        let markerCentral = new google.maps.Marker({
+          position: {lat: 4.634603, lng:-74.082858},
+          map: this.map,
+          title: 'Comedor Central',
+          icon: '../../assets/img/cafetaria.png'
+        });
+        markerCentral.addListener('click', function() {
+          infowindowCentral.open(this.map, markerCentral);
+        });
+
+        let markerFEM = new google.maps.Marker({
+          position: {lat: 4.637810, lng:-74.082686},
+          map: this.map,
+          title: 'Cafeteria del FEM',
+          icon: '../../assets/img/cafetaria.png'
+        });
+        markerFEM.addListener('click', function() {
+          infowindowFEM.open(this.map, markerFEM);
+        });
+
+        let markerEconomia = new google.maps.Marker({
+          position: {lat: 4.636989, lng:-74.080826},
+          map: this.map,
+          title: 'Cafeteria C. Economicas',
+          icon: '../../assets/img/cafetaria.png'
+        });
+        markerEconomia.addListener('click', function() {
+          infowindowEconomia.open(this.map, markerEconomia);
+        });
+
+        let markerLaFlecha = new google.maps.Marker({
+          position: {lat: 4.633774, lng:-74.084300},
+          map: this.map,
+          title: 'Cafeteria La Flecha',
+          icon: '../../assets/img/cafetaria.png'
+        });
+        markerLaFlecha.addListener('click', function() {
+          infowindowFlecha.open(this.map, markerLaFlecha);
+        });
+
+        let markerAgronomia = new google.maps.Marker({
+          position: {lat: 4.635813, lng:-74.087402},
+          map: this.map,
+          title: 'Cafeteria de Agronomia',
+          icon: '../../assets/img/cafetaria.png'
+        });
+        markerAgronomia.addListener('click', function() {
+          infowindowAgronomia.open(this.map, markerAgronomia);
+        });
+
+        let markerHemeroteca = new google.maps.Marker({
+          position: {lat: 4.636721, lng:-74.091003},
+          map: this.map,
+          title: 'Cafeteria de la Hemeroteca',
+          icon: '../../assets/img/cafetaria.png'
+        });
+        markerHemeroteca.addListener('click', function() {
+          infowindowHemeroteca.open(this.map, markerHemeroteca);
+        });
+
+        mapEle.classList.add('show-map');
+      });
   }
 
 
