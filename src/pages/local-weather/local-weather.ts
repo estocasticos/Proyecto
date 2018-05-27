@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { WeatherProvider } from '../../services/weather';
 import { Storage } from '@ionic/storage';
+import { HomePage } from "../home/home";
 // import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -10,6 +11,9 @@ import { Storage } from '@ionic/storage';
 })
 export class LocalWeatherPage {
   weather: any;
+  impDistancia: number;
+  impFila: number;
+  impSabor: number;
   location: {
     state: string,
     city: string
@@ -26,6 +30,11 @@ export class LocalWeatherPage {
     public navCtrl: NavController,
     private weatherProvider: WeatherProvider,
     private storage: Storage) {
+  }
+
+  goToHome(){
+    console.log(this.impDistancia);
+    this.navCtrl.push(HomePage);
   }
 
   ionViewWillEnter() {

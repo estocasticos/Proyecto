@@ -21,7 +21,7 @@ export class GoogleService{
         let headers = new Headers({ 'Access-Control-Allow-Headers': 'Authorization'});
         let options = new RequestOptions({ headers: headers });
         let destination = "4.634603,-74.082858|4.637810,-74.082686|4.636989,-74.080826|4.633774,-74.084300|4.635813,-74.087402|4.636721,-74.091003";
-        let Url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&mode=walking&origins=" + latitude+"," +longitude+ "&destinations="+destination+"&key=AIzaSyCn7UxDVsdSkYucnQhKJULWInNVJv2qEGM"
+        let Url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&mode=driving&origins=" + latitude+"," +longitude+ "&destinations="+destination+"&key=AIzaSyCn7UxDVsdSkYucnQhKJULWInNVJv2qEGM"
         //console.log(Url)
         return this.http.get(Url, options)
                     .map(this.extractData)
