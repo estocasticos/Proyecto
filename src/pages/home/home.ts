@@ -71,7 +71,7 @@ loadMap(position: Geoposition){
       position: myLatLng,
       map: this.map,
       title: 'Yo',
-      icon: '../../assets/img/male.png'
+      icon: 'assets/img/male.png'
     });
   });
   this.rest.GetDistances(latitude,longitude)
@@ -91,7 +91,7 @@ loadMap(position: Geoposition){
           '</div>'+
           '<h1 id="firstHeading" class="firstHeading">Comedor Central</h1>'+
           '<div id="bodyContent"  style="align-content: center">'+
-          '<img src="../../assets/img/comcent.jpg" alt="comedor central" height="170" width="144">'+
+          '<img src="assets/img/comcent.jpg" alt="comedor central" height="170" width="144">'+
           '<p>comedor info</p>'+
           '<p> '+ dist.central +' metros </p>'+
           '</div>'+
@@ -107,7 +107,7 @@ loadMap(position: Geoposition){
         '</div>'+
         '<h1 id="firstHeading" class="firstHeading">Comedor FEM</h1>'+
         '<div id="bodyContent">'+
-        '<img src="../../assets/img/Fem.jpg" alt="comedor central" height="170" width="144">'+
+        '<img src="assets/img/Fem.jpg" alt="comedor Fem" height="170" width="144">'+
         '<p>comedor info</p>'+
         '<p> '+ dist.FEM +' metros </p>'+
         '</div>'+
@@ -122,7 +122,7 @@ loadMap(position: Geoposition){
         '</div>'+
         '<h1 id="firstHeading" class="firstHeading">Comedor Economia</h1>'+
         '<div id="bodyContent">'+
-        '<img src="../../assets/img/Economia.jpg" alt="comedor central" height="170" width="144">'+
+        '<img src="assets/img/Economia.jpg" alt="comedor Economia" height="170" width="144">'+
         '<p>comedor info</p>'+
         '<p> '+ dist.Economia +'metros </p>'+
         '</div>'+
@@ -137,7 +137,7 @@ loadMap(position: Geoposition){
         '</div>'+
         '<h1 id="firstHeading" class="firstHeading">Comedor Flecha</h1>'+
         '<div id="bodyContent">'+
-        '<img src="../../assets/img/Flecha.jpg" alt="comedor central" height="170" width="144">'+
+        '<img src="assets/img/Flecha.jpg" alt="comedor flecha" height="170" width="144">'+
         '<p>comedor info</p>'+
         '<p> '+ dist.LaFlecha +'metros </p>'+
         '</div>'+
@@ -152,7 +152,7 @@ loadMap(position: Geoposition){
         '</div>'+
         '<h1 id="firstHeading" class="firstHeading">Comedor Agronomia</h1>'+
         '<div id="bodyContent">'+
-        '<img src="../../assets/img/Agronomia.jpg" alt="comedor central" height="170" width="144">'+
+        '<img src="assets/img/Agronomia.jpg" alt="comedor Agronomia" height="170" width="144">'+
         '<p>comedor info</p>'+
         '<p> '+ dist.Agronomia +'metros </p>'+
         '</div>'+
@@ -167,7 +167,7 @@ loadMap(position: Geoposition){
         '</div>'+
         '<h1 id="firstHeading" class="firstHeading">Comedor Hemeroteca</h1>'+
         '<div id="bodyContent">'+
-        '<img src="../../assets/img/Hemeroteca.jpg" alt="comedor central" height="170" width="144">'+
+        '<img src="assets/img/Hemeroteca.jpg" alt="comedor Hemeroteca" height="170" width="144">'+
         '<p>comedor info</p>'+
         '<p> '+ dist.Hemeroteca +' </p>'+
         '</div>'+
@@ -184,14 +184,14 @@ loadMap(position: Geoposition){
             position: myLatLng,
             map: this.map,
             title: 'Yo',
-            icon: '../../assets/img/male.png'
+            icon: 'assets/img/male.png'
           });
 
         let markerCentral = new google.maps.Marker({
           position: {lat: 4.634603, lng:-74.082858},
           map: this.map,
           title: 'Comedor Central',
-          icon: '../../assets/img/cafetaria.png'
+          icon: 'assets/img/cafetaria.png'
         });
         markerCentral.addListener('click', function() {
           infowindowCentral.open(this.map, markerCentral);
@@ -201,7 +201,7 @@ loadMap(position: Geoposition){
           position: {lat: 4.637810, lng:-74.082686},
           map: this.map,
           title: 'Cafeteria del FEM',
-          icon: '../../assets/img/cafetaria.png'
+          icon: 'assets/img/cafetaria.png'
         });
         markerFEM.addListener('click', function() {
           infowindowFEM.open(this.map, markerFEM);
@@ -211,7 +211,7 @@ loadMap(position: Geoposition){
           position: {lat: 4.636989, lng:-74.080826},
           map: this.map,
           title: 'Cafeteria C. Economicas',
-          icon: '../../assets/img/cafetaria.png'
+          icon: 'assets/img/cafetaria.png'
         });
         markerEconomia.addListener('click', function() {
           infowindowEconomia.open(this.map, markerEconomia);
@@ -221,7 +221,7 @@ loadMap(position: Geoposition){
           position: {lat: 4.633774, lng:-74.084300},
           map: this.map,
           title: 'Cafeteria La Flecha',
-          icon: '../../assets/img/cafetaria.png'
+          icon: 'assets/img/cafetaria.png'
         });
         markerLaFlecha.addListener('click', function() {
           infowindowFlecha.open(this.map, markerLaFlecha);
@@ -231,7 +231,7 @@ loadMap(position: Geoposition){
           position: {lat: 4.635813, lng:-74.087402},
           map: this.map,
           title: 'Cafeteria de Agronomia',
-          icon: '../../assets/img/cafetaria.png'
+          icon: 'assets/img/cafetaria.png'
         });
         markerAgronomia.addListener('click', function() {
           infowindowAgronomia.open(this.map, markerAgronomia);
@@ -241,7 +241,7 @@ loadMap(position: Geoposition){
           position: {lat: 4.636721, lng:-74.091003},
           map: this.map,
           title: 'Cafeteria de la Hemeroteca',
-          icon: '../../assets/img/cafetaria.png'
+          icon: 'assets/img/cafetaria.png'
         });
         markerHemeroteca.addListener('click', function() {
           infowindowHemeroteca.open(this.map, markerHemeroteca);
