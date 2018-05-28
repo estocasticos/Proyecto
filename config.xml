@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.ionicstartheme" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Ionic 3 Start Theme</name>
-    <description>Ionic 3 Start Theme</description>
-    <author email="firminoata@gmail.com" href="https://ionictheme.com">Ionic Theme</author>
+<widget id="com.estocasticos.proyecto" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Filapp</name>
+    <description>Aplicacion para encontrar tu cafeteria ideal en la Universidad Nacional de Colombia</description>
+    <author>Equipo LuisKevinJuanx2Pedro</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="*://*.googleapis.com/*" />
