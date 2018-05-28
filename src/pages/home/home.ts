@@ -289,6 +289,44 @@ loadMap(position: Geoposition){
     });
   }
 
+  ayuda(myEvent) {
+
+    var media_hemeroteca = 130;
+    var media_central = 190;
+    var media_flecha = 80;
+    var media_economia = 70;
+    var media_fem = 65;
+    var media_agronomia = 55;
+    var sirve = 1;
+
+    var tiempo_en_fila = 240;
+
+    //var miu = 1/tiempo_en_fila;
+    var miu_horas = 75;
+
+    var lq_hemeroteca = media_hemeroteca*media_hemeroteca/(miu_horas*(miu_horas-media_hemeroteca));
+    var lq_central = media_central*media_central/(miu_horas*(miu_horas-media_central));
+    var lq_flecha = media_flecha*media_flecha/(miu_horas*(miu_horas-media_flecha));
+    var lq_economia = media_economia*media_economia/(miu_horas*(miu_horas-media_economia));
+    var lq_fem = media_fem*media_fem/(miu_horas*(miu_horas-media_fem));
+    var lq_agronomia = media_agronomia*media_agronomia/(miu_horas*(miu_horas-media_agronomia));
+
+    var ws_hemeroteca = (media_hemeroteca/(miu_horas*(miu_horas-media_hemeroteca)))+miu_horas;
+    var ws_central = (media_central/(miu_horas*(miu_horas-media_central)))+miu_horas;
+    var ws_flecha = (media_flecha/(miu_horas*(miu_horas-media_flecha)))+miu_horas;
+    var ws_economia = (media_economia/(miu_horas*(miu_horas-media_economia)))+miu_horas;
+    var ws_fem = (media_fem/(miu_horas*(miu_horas-media_fem)))+miu_horas;
+    var ws_agronomia = (media_agronomia/(miu_horas*(miu_horas-media_agronomia)))+miu_horas;
+
+
+
+    console.log(myEvent);
+    let popover = this.popoverCtrl.create(NotificationsPage);
+    popover.present({
+      ev: ws_agronomia
+    });
+  }
+
 }
 
 //
