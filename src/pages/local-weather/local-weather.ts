@@ -38,7 +38,11 @@ export class LocalWeatherPage {
 
   goToHome(){
     console.log(this.impDistancia);
-    this.navCtrl.push(HomePage);
+    this.navCtrl.push(HomePage, {
+            impDistancia: this.impDistancia,
+            impFila: this.impFila,
+            impSabor: this.impSabor
+        });
   }
 
   ionViewDidLoad(){

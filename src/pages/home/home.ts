@@ -1,7 +1,7 @@
 import {Component, ViewChild, ElementRef} from "@angular/core";
-import {NavController, PopoverController} from "ionic-angular";
+import {NavController, PopoverController, NavParams} from "ionic-angular";
 import {Storage} from '@ionic/storage';
-
+import { AlertController } from 'ionic-angular';
 import {NotificationsPage} from "../notifications/notifications";
 import {SettingsPage} from "../settings/settings";
 import {TripsPage} from "../trips/trips";
@@ -14,6 +14,7 @@ import { GoogleService } from '../../services/google-service'
 declare var google;
 
 
+
 @Component({
   selector: 'home-page',
   templateUrl: 'home.html'
@@ -23,6 +24,15 @@ export class HomePage {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  impDistancia: number;
+  impFila: number;
+  impSabor: number;
+  distanciaHemeroteca: number;
+  distanciaCentral: number;
+  distanciaFlecha: number;
+  distanciaFem: number;
+  distanciaAgro: number;
+  distanciaEco: number;
   // search condition
   public search = {
     name: "Rio de Janeiro, Brazil",
@@ -30,11 +40,16 @@ export class HomePage {
   }
 
   constructor(private storage: Storage, public nav: NavController, public popoverCtrl: PopoverController,
-    private geolocation: Geolocation, public rest: GoogleService) {
+    private geolocation: Geolocation, public rest: GoogleService, public navParams : NavParams, public alertCtrl: AlertController) {
+      this.impDistancia= navParams.data.impDistancia;
+      this.impFila= navParams.data.impFila;
+      this.impSabor= navParams.data.impSabor;
+      console.log(this.impDistancia + this.impFila + this.impSabor);
   }
 
 
   ionViewDidLoad(){
+    console.log(this.impDistancia + this.impFila + this.impSabor)
       this.getPosition();
     }
 
@@ -85,6 +100,12 @@ loadMap(position: Geoposition){
 
   markers(distances: any, mapEle: any, myLatLng: any){
       let dist=JSON.parse(distances)
+      this.distanciaCentral =dist.central
+      this.distanciaFem =dist.FEM
+      this.distanciaEco =dist.Economia
+      this.distanciaFlecha =dist.LaFlecha
+      this.distanciaAgro =dist.Agronomia
+      this.distanciaHemeroteca =dist.Hemeroteca
     console.log(dist)
       var contentStringCentral = '<div id="content" style="align-content: center">'+
           '<div id="siteNotice">'+
@@ -93,7 +114,7 @@ loadMap(position: Geoposition){
           '<div id="bodyContent"  style="align-content: center">'+
           '<img src="assets/img/comcent.jpg" alt="comedor central" height="170" width="144">'+
           '<p>comedor info</p>'+
-          '<p> '+ dist.central +' metros </p>'+
+          '<p> Distancia: '+ dist.central +' metros </p>'+
           '</div>'+
           '</div>';
 
@@ -109,7 +130,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="assets/img/Fem.jpg" alt="comedor Fem" height="170" width="144">'+
         '<p>comedor info</p>'+
-        '<p> '+ dist.FEM +' metros </p>'+
+        '<p> Distancia: '+ dist.FEM +' metros </p>'+
         '</div>'+
         '</div>';
 
@@ -124,7 +145,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="assets/img/Economia.jpg" alt="comedor Economia" height="170" width="144">'+
         '<p>comedor info</p>'+
-        '<p> '+ dist.Economia +'metros </p>'+
+        '<p> Distancia: '+ dist.Economia +'metros </p>'+
         '</div>'+
         '</div>';
 
@@ -139,7 +160,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="assets/img/Flecha.jpg" alt="comedor flecha" height="170" width="144">'+
         '<p>comedor info</p>'+
-        '<p> '+ dist.LaFlecha +'metros </p>'+
+        '<p> Distancia: '+ dist.LaFlecha +'metros </p>'+
         '</div>'+
         '</div>';
 
@@ -154,7 +175,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="assets/img/Agronomia.jpg" alt="comedor Agronomia" height="170" width="144">'+
         '<p>comedor info</p>'+
-        '<p> '+ dist.Agronomia +'metros </p>'+
+        '<p> Distancia: '+ dist.Agronomia +'metros </p>'+
         '</div>'+
         '</div>';
 
@@ -169,7 +190,7 @@ loadMap(position: Geoposition){
         '<div id="bodyContent">'+
         '<img src="assets/img/Hemeroteca.jpg" alt="comedor Hemeroteca" height="170" width="144">'+
         '<p>comedor info</p>'+
-        '<p> '+ dist.Hemeroteca +' </p>'+
+        '<p> Distancia: '+ dist.Hemeroteca +' </p>'+
         '</div>'+
         '</div>';
 
@@ -288,8 +309,7 @@ loadMap(position: Geoposition){
       ev: myEvent
     });
   }
-
-  ayuda(myEvent) {
+  ayudar(){
 
     var media_hemeroteca = 130;
     var media_central = 190;
@@ -297,19 +317,21 @@ loadMap(position: Geoposition){
     var media_economia = 70;
     var media_fem = 65;
     var media_agronomia = 55;
-    var sirve = 1;
 
-    var tiempo_en_fila = 240;
-
+    var sabor_hemeroteca = 95;
+    var sabor_central = 69;
+    var sabor_flecha = 86;
+    var sabor_economia = 76;
+    var sabor_fem = 91;
+    var sabor_agronomia = 72;
     //var miu = 1/tiempo_en_fila;
-    var miu_horas = 75;
-
-    var lq_hemeroteca = media_hemeroteca*media_hemeroteca/(miu_horas*(miu_horas-media_hemeroteca));
-    var lq_central = media_central*media_central/(miu_horas*(miu_horas-media_central));
-    var lq_flecha = media_flecha*media_flecha/(miu_horas*(miu_horas-media_flecha));
-    var lq_economia = media_economia*media_economia/(miu_horas*(miu_horas-media_economia));
-    var lq_fem = media_fem*media_fem/(miu_horas*(miu_horas-media_fem));
-    var lq_agronomia = media_agronomia*media_agronomia/(miu_horas*(miu_horas-media_agronomia));
+    var miu_horas = 98;
+    var lq_hemeroteca = Math.abs(media_hemeroteca*media_hemeroteca/(miu_horas*(miu_horas-media_hemeroteca)));
+    var lq_central = Math.abs(media_central*media_central/(miu_horas*(miu_horas-media_central)));
+    var lq_flecha = Math.abs(media_flecha*media_flecha/(miu_horas*(miu_horas-media_flecha)));
+    var lq_economia = Math.abs(media_economia*media_economia/(miu_horas*(miu_horas-media_economia)));
+    var lq_fem = Math.abs(media_fem*media_fem/(miu_horas*(miu_horas-media_fem)));
+    var lq_agronomia = Math.abs(media_agronomia*media_agronomia/(miu_horas*(miu_horas-media_agronomia)));
 
     var ws_hemeroteca = (media_hemeroteca/(miu_horas*(miu_horas-media_hemeroteca)))+miu_horas;
     var ws_central = (media_central/(miu_horas*(miu_horas-media_central)))+miu_horas;
@@ -318,13 +340,47 @@ loadMap(position: Geoposition){
     var ws_fem = (media_fem/(miu_horas*(miu_horas-media_fem)))+miu_horas;
     var ws_agronomia = (media_agronomia/(miu_horas*(miu_horas-media_agronomia)))+miu_horas;
 
-
-
-    console.log(myEvent);
-    let popover = this.popoverCtrl.create(NotificationsPage);
-    popover.present({
-      ev: ws_agronomia
+    var utilidad_hemeroteca = ( (-this.distanciaHemeroteca/(10*this.impDistancia))) + ((- 1*this.impFila) * lq_hemeroteca)  + (this.impSabor * sabor_hemeroteca)
+    var utilidad_central = ((-this.distanciaCentral/(10*this.impDistancia))) + ((- 1*this.impFila) * lq_central)  + (this.impSabor * sabor_central)
+    var utilidad_flecha = ((-this.distanciaFlecha/(10*this.impDistancia))) + ((- 1*this.impFila) * lq_flecha)  + (this.impSabor * sabor_flecha)
+    var utilidad_fem = ((-this.distanciaFem/(10*this.impDistancia))) + ((- 1*this.impFila) * lq_economia)  + (this.impSabor * sabor_economia)
+    var utilidad_agro = ((-this.distanciaAgro/(10*this.impDistancia))) + ((- 1*this.impFila) * lq_fem)  + (this.impSabor * sabor_fem)
+    var utilidad_eco = ((-this.distanciaEco/(10*this.impDistancia))) + ((- 1*this.impFila) * lq_agronomia)  + (this.impSabor * sabor_agronomia)
+    var maximo = Math.max(utilidad_hemeroteca, utilidad_central, utilidad_flecha, utilidad_fem, utilidad_agro, utilidad_eco);
+    var salida = "";
+    if (maximo == utilidad_hemeroteca){
+      salida = "el comedor de la Hemeroteca"
+    }
+    if (maximo == utilidad_central){
+      salida = "el comedor Central"
+    }
+    if (maximo == utilidad_flecha){
+      salida = "la cafeteria de la Flecha"
+    }
+    if (maximo == utilidad_fem){
+      salida = "la cafeteria del FEM"
+    }
+    if (maximo == utilidad_agro){
+      salida = "La cafeteria de Agronomia"
+    }
+    if (maximo == utilidad_eco){
+      salida = "la cafeteria de C. Economicas"
+    }
+    console.log(((-this.distanciaCentral/(10*this.impDistancia))));
+    console.log(( lq_flecha));
+    console.log((this.impSabor * sabor_central));
+    console.log(utilidad_hemeroteca);
+    console.log(utilidad_central);
+    console.log(utilidad_flecha);
+    console.log(utilidad_fem);
+    console.log(utilidad_agro);
+    console.log(utilidad_eco);
+    let alert = this.alertCtrl.create({
+      title: 'Sugerencia',
+      subTitle: 'la mejor opción porque representa una mayor utilidad es ir a ' + salida,
+      buttons: ['OK']
     });
+    alert.present();
   }
 
 }
