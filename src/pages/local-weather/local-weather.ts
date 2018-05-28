@@ -4,6 +4,9 @@ import { WeatherProvider } from '../../services/weather';
 import { Storage } from '@ionic/storage';
 import { HomePage } from "../home/home";
 // import { HttpErrorResponse } from '@angular/common/http';
+import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+
+
 
 @Component({
   selector: 'page-local-weather',
@@ -29,13 +32,27 @@ export class LocalWeatherPage {
   constructor(
     public navCtrl: NavController,
     private weatherProvider: WeatherProvider,
-    private storage: Storage) {
+    private storage: Storage,
+    private geolocation: Geolocation) {
   }
 
   goToHome(){
     console.log(this.impDistancia);
     this.navCtrl.push(HomePage);
   }
+
+  ionViewDidLoad(){
+      this.getPosition();
+    }
+
+  getPosition():any{
+  this.geolocation.getCurrentPosition().then(response => {
+    //ni mrds
+  })
+  .catch(error =>{
+    console.log(error);
+  })
+}
 
   ionViewWillEnter() {
 

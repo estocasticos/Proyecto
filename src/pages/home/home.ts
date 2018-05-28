@@ -62,7 +62,7 @@ loadMap(position: Geoposition){
   // create map
   this.map = new google.maps.Map(mapEle, {
     center: myLatLng,
-    zoom: 16
+    zoom: 14
   });
 
   google.maps.event.addListenerOnce(this.map, 'idle', () => {
